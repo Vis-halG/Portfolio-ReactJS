@@ -79,8 +79,8 @@ const Projects = () => {
     //   type: "clone"
     // },
     {
-      title: "Laptop Rent (Web Design)",
-      subtitle: "Rental service website made with HTML, CSS, JS & GSAP.",
+      title: "SaffireTech (Web Design)",
+      subtitle: "A WordPress service website made with HTML, CSS, JS & GSAP.",
       description: "Take your users on a journey with the joy of tasteful scroll animation. You might not even need JavaScript.",
       icon: (
         <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -89,8 +89,8 @@ const Projects = () => {
           <line x1="12" y1="17" x2="12" y2="21"/>
         </svg>
       ),
-      image: "./assets/Projects/LaptopRent.png",
-      link: "https://laptoprent.netlify.app/",
+      image: "./assets/Projects/SaffireTech.png",
+      link: "https://redesign-puce.vercel.app/",
       type: "basic"
     },
     {
