@@ -116,7 +116,7 @@ const Navbar = () => {
             className="DownloadCV"
             onClick={() => {
               window.open(
-                "https://drive.google.com/file/d/1cKmNITw5xUlK-NgA0FHbU-pvf9RUpmDF/view?usp=sharing",
+                "https://drive.google.com/file/d/1KjdmbPTSeBpldy3wANhDCniIQA_VRnAU/view?usp=sharing",
                 "_blank"
               );
             }}
@@ -131,7 +131,7 @@ const Navbar = () => {
           className="DownloadCV"
           onClick={() => {
             window.open(
-              "https://drive.google.com/file/d/1cKmNITw5xUlK-NgA0FHbU-pvf9RUpmDF/view?usp=sharing",
+              "https://drive.google.com/file/d/1KjdmbPTSeBpldy3wANhDCniIQA_VRnAU/view?usp=sharing",
               "_blank"
             );
           }}
