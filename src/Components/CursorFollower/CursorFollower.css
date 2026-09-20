@@ -1,33 +1,151 @@
-.circle {
+/* =========================================================
+   CURSOR FOLLOWER
+   Every per-state look lives here as CSS. The component only
+   writes position and velocity, so changing how a state looks
+   never touches the animation loop.
+   ========================================================= */
+
+.cursor-ring {
+  --size: 40px;
+  --ring: #120402;
+  --fill: transparent;
+  --glow: 0 0 12px rgba(18, 4, 2, 0.45);
+
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
-  border: 2px solid #120402ff;
-  border-radius: 50%;
-  pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  
 
-  box-shadow: 0 0 10px #120402ff; /* Bas ek base shadow chhod diya */
-  
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    width 0.15s ease,
-    height 0.15s ease,
-    border 0.3s ease,
-    border-radius 0.3s ease,
-    box-shadow 0.3s ease;
-}
-.click-text {
-  color: white; 
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
+
+  width: var(--size);
+  height: var(--size);
+  border: 2px solid var(--ring);
+  border-radius: 50%;
+  background: var(--fill);
+  box-shadow: var(--glow);
+
   pointer-events: none;
-  transition: opacity 0.15s ease;
+  opacity: 0;
+
+  /* Position is written every frame by JS, so it is deliberately not
+     transitioned here - only the state-driven properties are. */
+  transition: width 0.18s ease, height 0.18s ease, border-radius 0.18s ease,
+    border-color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease,
+    opacity 0.2s ease;
+}
+
+.cursor-ring[data-visible='true'] {
+  opacity: 1;
+}
+
+.cursor-ring__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.18s ease;
+}
+
+/* ---------- States ---------- */
+
+/* Anchors, nav items, inline links. */
+.cursor-ring[data-state='link'] {
+  --size: 58px;
+  --ring: #ff5f49;
+  --fill: rgba(255, 95, 73, 0.12);
+  --glow: 0 0 18px rgba(255, 95, 73, 0.45);
+}
+
+/* Buttons and filter tabs get a filled puck so they read as pressable. */
+.cursor-ring[data-state='button'] {
+  --size: 52px;
+  --ring: #1c1c1e;
+  --fill: rgba(28, 28, 30, 0.9);
+  --glow: 0 0 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Project and skill cards: big ring carrying an "Open" label. */
+.cursor-ring[data-state='card'] {
+  --size: 84px;
+  --ring: #ffffff;
+  --fill: rgba(28, 28, 30, 0.75);
+  --glow: 0 0 22px rgba(0, 0, 0, 0.5);
+}
+
+.cursor-ring[data-state='card'] .cursor-ring__label,
+.cursor-ring[data-state='muted'] .cursor-ring__label,
+.cursor-ring[data-state='button'] .cursor-ring__label {
+  opacity: 1;
+}
+
+/* Cards that intentionally go nowhere - reads as unavailable, not broken. */
+.cursor-ring[data-state='muted'] {
+  --size: 84px;
+  --ring: rgba(255, 255, 255, 0.55);
+  --fill: rgba(90, 74, 40, 0.75);
+  --glow: none;
+}
+
+/* Text fields: a caret-shaped bar instead of a ring. */
+.cursor-ring[data-state='text'] {
+  width: 3px;
+  height: 30px;
+  border-radius: 2px;
+  --ring: transparent;
+  --fill: #1c1c1e;
+  --glow: none;
+}
+
+/* Headings: a soft, wide halo that stays out of the way of reading. */
+.cursor-ring[data-state='heading'] {
+  --size: 64px;
+  --ring: rgba(18, 4, 2, 0.25);
+  --fill: rgba(18, 4, 2, 0.04);
+  --glow: none;
+}
+
+/* Icons: the ring wraps the element's own box (JS supplies the size). */
+.cursor-ring[data-state='snap'] {
+  border-radius: 12px;
+  --ring: #ff5f49;
+  --fill: rgba(255, 95, 73, 0.14);
+  --glow: 0 0 16px rgba(255, 95, 73, 0.4);
+}
+
+/* ---------- Dark theme ---------- */
+body.dark-theme .cursor-ring {
+  --ring: #f5f5f5;
+  --glow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+body.dark-theme .cursor-ring[data-state='button'] {
+  --ring: #ffffff;
+  --fill: rgba(255, 255, 255, 0.92);
+}
+
+body.dark-theme .cursor-ring[data-state='button'] .cursor-ring__label {
+  color: #1c1c1e;
+}
+
+body.dark-theme .cursor-ring[data-state='text'] {
+  --fill: #f5f5f5;
+}
+
+body.dark-theme .cursor-ring[data-state='heading'] {
+  --ring: rgba(255, 255, 255, 0.3);
+  --fill: rgba(255, 255, 255, 0.05);
+}
+
+/* The component already refuses to mount under these conditions; this is a
+   belt-and-braces guard in case it is ever rendered directly. */
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .cursor-ring {
+    display: none;
+  }
 }
