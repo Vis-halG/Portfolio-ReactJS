@@ -17,7 +17,7 @@ const Projects = () => {
           <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
         </svg>
       ),
-      image: "./assets/Projects/headphone.png",
+      image: "./assets/Projects/headphone.webp",
       link: "https://headphone-landing-page-murex.vercel.app/",
       type: "Website"
     },
@@ -30,7 +30,7 @@ const Projects = () => {
           <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.64 16.2a2 2 0 0 1-2.83-2.83l8.49-8.4"/>
         </svg>
       ),
-      image: "./assets/Projects/image.png",
+      image: "./assets/Projects/image.webp",
       link: "https://agency-website-try.vercel.app/",
       type: "Website"
     },
@@ -44,7 +44,7 @@ const Projects = () => {
           <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.64 16.2a2 2 0 0 1-2.83-2.83l8.49-8.4"/>
         </svg>
       ),
-    image: "./assets/Projects/Spotify.png",
+    image: "./assets/Projects/Spotify.webp",
       link: "https://spotify-clone-mauve-eight-16.vercel.app/",
       type: "clone"
     },
@@ -58,7 +58,7 @@ const Projects = () => {
           <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.64 16.2a2 2 0 0 1-2.83-2.83l8.49-8.4"/>
         </svg>
       ),
-      image: "./assets/Projects/Hero.png",
+      image: "./assets/Projects/Hero.webp",
       link: "https://flexbox-ebon.vercel.app/",
       type: "Website"
     },
@@ -74,7 +74,7 @@ const Projects = () => {
     //       <path d="m16 10a4 4 0 0 1-8 0"/>
     //     </svg>
     //   ),
-    //   image: "./assets/Projects/Enterprises.png",
+    //   image: "./assets/Projects/Enterprises.webp",
     //   link: "https://aaradhyaenterprises.netlify.app/",
     //   type: "clone"
     // },
@@ -89,7 +89,7 @@ const Projects = () => {
           <line x1="12" y1="17" x2="12" y2="21"/>
         </svg>
       ),
-      image: "./assets/Projects/SaffireTech.png",
+      image: "./assets/Projects/SaffireTech.webp",
       link: "https://redesign-puce.vercel.app/",
       type: "basic"
     },
@@ -103,7 +103,7 @@ const Projects = () => {
           <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.12 0 4.07.74 5.61 1.98"/>
         </svg>
       ),
-      image: "./assets/Projects/MemoryCard.png",
+      image: "./assets/Projects/MemoryCard.webp",
       link: "https://memory-game-mini.vercel.app/",
       type: "mini"
     },
@@ -116,7 +116,7 @@ const Projects = () => {
     //       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
     //     </svg>
     //   ),
-    //   image: "./assets/Projects/NumberGuessing.png",
+    //   image: "./assets/Projects/NumberGuessing.webp",
     //   link: "https://number-game-mini.vercel.app/",
     //   type: "mini"
     // },
@@ -224,6 +224,10 @@ const Projects = () => {
                       src={project.image}
                       alt={project.title}
                       className="project-image"
+                      width="900"
+                      height="570"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </article>
                 </li>

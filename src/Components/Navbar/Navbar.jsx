@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import PortfolioImg from "../../assets/images/Portfolio.png";
+import PortfolioImg from "../../assets/images/Portfolio.webp";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div>
-        <img src={PortfolioImg} alt="Portfolio" />
+        <img src={PortfolioImg} alt="Vishal S. Gupta" width="100" height="33" fetchPriority="high" decoding="async" />
       </div>
 
       <div

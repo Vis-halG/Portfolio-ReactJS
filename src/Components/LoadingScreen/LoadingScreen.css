@@ -1,7 +1,5 @@
 /* src/Components/LoadingScreen/LoadingScreen.css */
 
-@import url('https://fonts.googleapis.com/css?family=Quattrocento+Sans');
-
 /* --- Positioning Mixin Equivalent --- */
 .loading-text {
 	position: absolute;
@@ -41,7 +39,7 @@
 	display: inline-block;
 	margin: 0 5px;
 	color: #fff;
-    font-family: 'Quattrocento Sans', sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     /* 🤏 FONT SIZE: Changed to 1.8rem (slightly smaller) */
     font-size: 1.8rem; 
     font-weight: bold;

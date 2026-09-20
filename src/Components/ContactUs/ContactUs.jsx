@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
 import "./ContactUs.css";
 
 const ContactUs = () => {
@@ -8,7 +7,7 @@ const ContactUs = () => {
   const [email, setEmail] = useState("");
   const [isSending, setIsSending] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
 
@@ -25,19 +24,19 @@ const ContactUs = () => {
       to_email: "vishalgupta25980@gmail.com",
     };
 
-    emailjs
-      .send(serviceID, templateID, templateParams, publicKey)
-      .then(() => {
-        alert("✅ Message sent successfully!");
-        setName("");
-        setSubject("");
-        setEmail("");
-      })
-      .catch((error) => {
-        console.error("❌ EmailJS Error:", error);
-        alert("❌ Failed to send message. Please try again.");
-      })
-      .finally(() => setIsSending(false));
+    try {
+      const { default: emailjs } = await import("emailjs-com");
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      alert("✅ Message sent successfully!");
+      setName("");
+      setSubject("");
+      setEmail("");
+    } catch (error) {
+      console.error("❌ EmailJS Error:", error);
+      alert("❌ Failed to send message. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (

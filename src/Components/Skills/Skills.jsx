@@ -3,18 +3,18 @@ import "./Skills.css";
 
 const skills = [
   
-    { name: "HTML", image: "html.png" },
-    { name: "CSS", image: "css.png" },
-    { name: "JavaScript", image: "javascript.png" },
-    { name: "React", image: "react.png" },
-    { name: "Figma", image: "figma.png" },
-    { name: "Git", image: "git.png" },
-    { name: "GitHub", image: "github.png" },
-    {name: "bootstrap", image: "bootstrap.png"},
-    { name: "Tailwind", image: "tailwind.png" },
-    { name: "TypeScript", image: "typescript.png" },
-    { name: "Photoshop", image: "adobe-photoshop.png" },
-    { name: "SQL", image: "sql.png" },
+    { name: "HTML", image: "html.webp" },
+    { name: "CSS", image: "css.webp" },
+    { name: "JavaScript", image: "javascript.webp" },
+    { name: "React", image: "react.webp" },
+    { name: "Figma", image: "figma.webp" },
+    { name: "Git", image: "git.webp" },
+    { name: "GitHub", image: "github.webp" },
+    {name: "bootstrap", image: "bootstrap.webp"},
+    { name: "Tailwind", image: "tailwind.webp" },
+    { name: "TypeScript", image: "typescript.webp" },
+    { name: "Photoshop", image: "adobe-photoshop.webp" },
+    { name: "SQL", image: "sql.webp" },
    
 ];
 
@@ -51,7 +51,14 @@ function Skills() {
                         className={`skill_card ${isVisible ? "pop-move" : "pop-down"}`}
                         style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                        <img src={`/assets/skills/${skill.image}`} alt={skill.name} />
+                        <img
+                            src={`/assets/skills/${skill.image}`}
+                            alt={skill.name}
+                            width="80"
+                            height="80"
+                            loading="lazy"
+                            decoding="async"
+                        />
                         <p>{skill.name}</p>
                     </div>
                 ))}

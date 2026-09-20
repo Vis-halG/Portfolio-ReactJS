@@ -1,5 +1,6 @@
 import React from 'react';
-import './Footer.css'; 
+import Icon from '../Icons/Icon.jsx';
+import './Footer.css';
 
 const Footer = () => {
   return (
@@ -17,19 +18,19 @@ const Footer = () => {
         <div className="footer-social">
           
           <a href="https://github.com/Vis-halG">
-           <i className="fab fa-github"></i>
+           <Icon name="github" label="GitHub" />
           </a>
           <a href="https://www.linkedin.com/in/vishalsgupta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <i className="fab fa-linkedin"></i>
+            <Icon name="linkedin" label="LinkedIn" />
           </a>
           <a href="mailto:vishalsgupta@example.com" aria-label="Email">
-            <i className="fas fa-envelope"></i>
+            <Icon name="envelope" label="Email" />
           </a>
           <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <i className="fab fa-whatsapp"></i>
+            <Icon name="whatsapp" label="WhatsApp" />
           </a>
           <a href="tel:+1234567890" aria-label="Phone">
-            <i className="fas fa-phone"></i>
+            <Icon name="phone" label="Phone" />
           </a>
         </div>
         </div>

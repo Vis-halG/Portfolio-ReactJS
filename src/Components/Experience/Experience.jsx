@@ -10,9 +10,13 @@ function Experience() {
       <div className="experience-container">
         <div className="heading">
           <img
-            src="https://res.cloudinary.com/dbithmxnp/image/upload/v1738544860/magic-bus-logo_tscczx.gif"
+            src="https://res.cloudinary.com/dbithmxnp/image/upload/f_auto,q_auto,w_240/v1738544860/magic-bus-logo_tscczx.gif"
             alt="Magic Bus Foundation"
             className="experience-image"
+            width="120"
+            height="120"
+            loading="lazy"
+            decoding="async"
           />
           <h2>Magic Bus Foundation</h2>
         </div>
@@ -58,6 +62,10 @@ function Experience() {
             src="https://design-style-guide.freecodecamp.org/img/fcc_secondary_small.svg"
             alt="FreeCodeCamp"
             className="experience-image"
+            width="120"
+            height="120"
+            loading="lazy"
+            decoding="async"
           />
           <h2>Free Code Camp</h2>
         </div>
