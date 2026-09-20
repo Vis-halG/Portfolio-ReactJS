@@ -1,6 +1,7 @@
 
 
-import React, { useState } from "react";
+import { useState } from "react";
+import { Mail, MessageCircle, Phone, Rocket } from "lucide-react";
 import Icon from "../Icons/Icon.jsx";
 import { cld, cldSrcSet } from "../../lib/cloudinary.js";
 
@@ -34,39 +35,44 @@ const Home = () => {
               href="https://github.com/Vis-halG"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               className="text-[1.5rem] md:text-[1.5rem] text-[#222] transition-transform duration-300 transform hover:scale-120 hover:text-[#f05743]"
             >
-              <Icon name="github" label="GitHub" />
+              <Icon name="github" />
             </a>
             <a
               href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
               className="text-[1.5rem] md:text-[1.5rem] text-[#222] transition-transform duration-300 transform hover:scale-120 hover:text-[#f05743]"
             >
-              <Icon name="linkedin" label="LinkedIn" />
+              <Icon name="linkedin" />
             </a>
             <a
               href="mailto:VishalGupta25980@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Email"
               className="text-[1.5rem] md:text-[1.5rem] text-[#222] transition-transform duration-300 transform hover:scale-120 hover:text-[#f05743]"
             >
-              <Icon name="envelope" label="Email" />
+              <Mail aria-hidden="true" />
             </a>
             <a
               href="https://wa.me/9773146258"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="WhatsApp"
               className="text-[1.5rem] md:text-[1.5rem] text-[#222] transition-transform duration-300 transform hover:scale-120 hover:text-[#f05743]"
             >
-              <Icon name="whatsapp" label="WhatsApp" />
+              <MessageCircle aria-hidden="true" />
             </a>
             <a
               href="tel:+9773146258"
+              aria-label="Phone"
               className="text-[1.4rem] md:text-[1.4rem] text-[#222] transition-transform duration-300 transform hover:scale-120 hover:text-[#f05743]"
             >
-              <Icon name="phone" label="Phone" />
+              <Phone aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -119,7 +125,7 @@ const Home = () => {
         <div className="absolute right-[-0.1rem]  top-[9%] w-[59vw] md:w-[26vw] md:top-[28%] md:right-[0.5rem] text-left">
           <h3 className="text-[1.15rem] md:text-[1.8rem] font-bold">&lt;Coder/&gt;</h3>
           <p className="mt-[0rem] text-gray-700 text-[3.6vw] md:text-[1.5rem]">
-            A <span className="text-[#ff5f49] font-bold">Front-End Developer</span> who writes clean, efficient code with  <span className="text-[#ff5f49] font-bold">modern</span>  <span className="text-[#ff5f49] font-bold">web technologies. 🚀</span> 
+            A <span className="text-[#ff5f49] font-bold">Front-End Developer</span> who writes clean, efficient code with <span className="text-[#ff5f49] font-bold">modern</span> <span className="text-[#ff5f49] font-bold">web technologies. <Rocket className="inline-block h-[1em] w-[1em] align-[-0.08em]" aria-hidden="true" /></span>
           </p>
           
         </div>
@@ -144,7 +150,4 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
 

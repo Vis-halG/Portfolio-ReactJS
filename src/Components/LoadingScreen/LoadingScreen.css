@@ -40,12 +40,12 @@
 	margin: 0 5px;
 	color: #fff;
     font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    /* 🤏 FONT SIZE: Changed to 1.8rem (slightly smaller) */
+    /* Font size adjusted for balance. */
     font-size: 1.8rem; 
     font-weight: bold;
 
     filter: blur(0px);
-    /* ⚡ ANIMATION SPEED: Changed to 0.4s (slightly slower than 0.2s) */
+    /* Animation speed adjusted for a smoother reveal. */
     animation: blur-text 0.4s infinite linear alternate;
 }
 

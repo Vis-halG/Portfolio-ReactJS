@@ -1,43 +1,43 @@
 /* eslint-disable react/prop-types -- this codebase does not use prop-types anywhere */
 
 import { useMemo, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import './Projects.css';
 
-/**
- * Categories are declared here rather than derived from the projects so the
- * tab order is deliberate: shipped product first, practice work after.
- */
 const CATEGORIES = [
-  { id: 'all', label: 'All' },
-  { id: 'live', label: 'Live Work' },
+  { id: 'all', label: 'All work' },
+  { id: 'live', label: 'Products' },
   { id: 'website', label: 'Websites' },
   { id: 'clone', label: 'Clones' },
-  { id: 'mini', label: 'Mini Projects' },
+  { id: 'mini', label: 'Experiments' },
 ];
 
 const PROJECTS = [
   {
     title: 'NexCard',
-    tagline: 'A digital visiting card that holds your contacts, work, services, bookings and payments on one link.',
+    tagline: 'A digital visiting card that brings contacts, work, services, bookings and payments together on one shareable link.',
     category: 'live',
+    categoryLabel: 'Digital product',
     status: 'live',
-    tech: ['React', 'Web App'],
+    tech: ['React', 'Product design', 'Web app'],
     image: './assets/Projects/thenexcard.webp',
     link: 'https://www.thenexcard.com/',
   },
   {
     title: 'NexConnect',
-    tagline: 'The companion Android app for NexCard — share and manage your card from your phone.',
+    tagline: 'The companion Android experience for sharing and managing a NexCard straight from your phone.',
     category: 'live',
+    categoryLabel: 'Mobile product',
     status: 'coming-soon',
-    tech: ['Android', 'Play Store'],
+    tech: ['Android', 'Mobile UI', 'Play Store'],
     image: null,
     link: null,
   },
   {
     title: 'Headphone Landing Page',
-    tagline: 'Product landing page for a headphone brand, built with React and Tailwind.',
+    tagline: 'A focused product story with a bold visual system, responsive layouts and clear conversion moments.',
     category: 'website',
+    categoryLabel: 'E-commerce concept',
     status: 'live',
     tech: ['React', 'Tailwind'],
     image: './assets/Projects/headphone.webp',
@@ -45,8 +45,9 @@ const PROJECTS = [
   },
   {
     title: 'Agency Website',
-    tagline: 'Marketing site for a creative agency, with scroll-triggered animations.',
+    tagline: 'An expressive marketing site that pairs editorial layouts with smooth, scroll-led interactions.',
     category: 'website',
+    categoryLabel: 'Creative development',
     status: 'live',
     tech: ['HTML', 'CSS', 'JavaScript'],
     image: './assets/Projects/image.webp',
@@ -54,8 +55,9 @@ const PROJECTS = [
   },
   {
     title: 'SaffireTech Redesign',
-    tagline: 'A redesign of a WordPress service company site, animated with GSAP.',
+    tagline: 'A modern rework of a technology services website, with stronger hierarchy and GSAP motion.',
     category: 'website',
+    categoryLabel: 'Website redesign',
     status: 'live',
     tech: ['HTML', 'CSS', 'GSAP'],
     image: './assets/Projects/SaffireTech.webp',
@@ -63,8 +65,9 @@ const PROJECTS = [
   },
   {
     title: 'Student Enquiry Form',
-    tagline: 'A study-abroad admissions enquiry form with a multi-field responsive layout.',
+    tagline: 'A responsive admissions journey that organises a detailed form into a clear, approachable flow.',
     category: 'website',
+    categoryLabel: 'Responsive interface',
     status: 'live',
     tech: ['HTML', 'CSS', 'Flexbox'],
     image: './assets/Projects/Hero.webp',
@@ -72,8 +75,9 @@ const PROJECTS = [
   },
   {
     title: 'Spotify Clone',
-    tagline: 'A recreation of the Spotify player interface, built to practise component layout.',
+    tagline: 'A faithful recreation of the music player experience, built to explore reusable React layouts.',
     category: 'clone',
+    categoryLabel: 'Interface study',
     status: 'live',
     tech: ['React', 'Tailwind'],
     image: './assets/Projects/Spotify.webp',
@@ -81,8 +85,9 @@ const PROJECTS = [
   },
   {
     title: 'Memory Card Game',
-    tagline: 'A card-matching game with flip animations and move tracking, in plain JavaScript.',
+    tagline: 'A fast card-matching game with tactile flip animations, move tracking and a responsive board.',
     category: 'mini',
+    categoryLabel: 'Interactive experiment',
     status: 'live',
     tech: ['JavaScript', 'CSS'],
     image: './assets/Projects/MemoryCard.webp',
@@ -90,60 +95,80 @@ const PROJECTS = [
   },
 ];
 
-/** Cards with no screenshot yet fall back to their initials on a tinted tile. */
 function Placeholder({ title }) {
   const initials = title.replace(/[^A-Z]/g, '').slice(0, 2) || title.slice(0, 2).toUpperCase();
+
   return (
     <div className="project-card__placeholder" aria-hidden="true">
-      <span>{initials}</span>
+      <span className="project-card__orb project-card__orb--one" />
+      <span className="project-card__orb project-card__orb--two" />
+      <span className="project-card__monogram">{initials}</span>
+      <span className="project-card__placeholder-label">In the lab</span>
     </div>
   );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, index, featured = false }) {
   const isComingSoon = project.status === 'coming-soon';
-
-  // A card that has nowhere to go should not pretend to be a link.
-  const Tag = isComingSoon ? 'div' : 'a';
+  const Tag = isComingSoon ? 'article' : 'a';
   const linkProps = isComingSoon
     ? {}
-    : { href: project.link, target: '_blank', rel: 'noopener noreferrer' };
+    : {
+        href: project.link,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        'aria-label': `View ${project.title} live project (opens in a new tab)`,
+      };
 
   return (
-    <Tag className="project-card" data-status={project.status} {...linkProps}>
+    <Tag className={`project-card${featured ? ' project-card--featured' : ''}`} data-status={project.status} {...linkProps}>
       <div className="project-card__media">
+        <div className="project-card__browser" aria-hidden="true">
+          <span /><span /><span />
+          <p>{project.link ? project.link.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') : 'Building something new'}</p>
+        </div>
+
         {project.image ? (
           <img
             src={project.image}
-            alt={`${project.title} screenshot`}
+            alt={`${project.title} website preview`}
             className="project-card__image"
             width="900"
             height="570"
-            loading="lazy"
+            loading={featured ? 'eager' : 'lazy'}
             decoding="async"
           />
         ) : (
           <Placeholder title={project.title} />
         )}
 
-        <span className="project-card__badge">
-          {isComingSoon ? 'Coming soon' : 'Live'}
+        <span className="project-card__status">
+          <span className="project-card__status-dot" />
+          {isComingSoon ? 'Coming soon' : 'Live project'}
         </span>
       </div>
 
       <div className="project-card__body">
-        <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__tagline">{project.tagline}</p>
+        <div className="project-card__meta">
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <span>{project.categoryLabel}</span>
+        </div>
 
-        <ul className="project-card__tech">
-          {project.tech.map((t) => (
-            <li key={t}>{t}</li>
-          ))}
-        </ul>
+        <div className="project-card__copy">
+          <h3 className="project-card__title">{project.title}</h3>
+          <p className="project-card__tagline">{project.tagline}</p>
+        </div>
 
-        <span className="project-card__cta">
-          {isComingSoon ? 'In development' : 'View project'}
-        </span>
+        <div className="project-card__footer">
+          <ul className="project-card__tech" aria-label="Technologies used">
+            {project.tech.map((technology) => <li key={technology}>{technology}</li>)}
+          </ul>
+
+          <span className="project-card__cta" aria-hidden="true">
+            {isComingSoon ? 'In development' : 'Explore project'}
+            {!isComingSoon && <ArrowRight aria-hidden="true" />}
+          </span>
+        </div>
       </div>
     </Tag>
   );
@@ -153,100 +178,70 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const visible = useMemo(
-    () =>
-      activeCategory === 'all'
-        ? PROJECTS
-        : PROJECTS.filter((p) => p.category === activeCategory),
+    () => activeCategory === 'all' ? PROJECTS : PROJECTS.filter((project) => project.category === activeCategory),
     [activeCategory]
   );
 
-  // Counts come from the data so they cannot drift as projects are added.
-  const counts = useMemo(
-    () => ({
-      total: PROJECTS.length,
-      live: PROJECTS.filter((p) => p.category === 'live').length,
-      practice: PROJECTS.filter((p) => p.category !== 'live').length,
-    }),
-    []
-  );
-
-  // A tab with nothing behind it is a dead end, so only offer real ones.
   const tabs = CATEGORIES.filter(
-    (c) => c.id === 'all' || PROJECTS.some((p) => p.category === c.id)
+    (category) => category.id === 'all' || PROJECTS.some((project) => project.category === category.id)
   );
 
   return (
-    <section className="projects_section" id="projects_section">
-      <div className="stat-container">
-        <div className="stat">
-          <div className="header">
-            <h1>Project Showcase</h1>
-            <p>
-              Explore my collection of web development projects, featuring
-              modern designs, interactive animations, and cutting-edge
-              technologies.
-            </p>
-          </div>
-          <div className="total-stats">
-            <h2 className="stat-number">
-              {counts.total.toString().padStart(2, '0')}
-            </h2>
-            <p className="stat-label">Total Projects</p>
-          </div>
+    <section className="projects_section" id="projects_section" aria-labelledby="projects-title">
+      <div className="projects-intro">
+        <div className="projects-intro__copy">
+          <p className="projects-eyebrow"><span /> Selected work · 2024—2026</p>
+          <h2 id="projects-title">Ideas, shaped into <em>digital experiences.</em></h2>
+          <p className="projects-intro__lede">
+            A selection of products and interfaces where thoughtful design meets clean, responsive development.
+          </p>
         </div>
 
-        <div className="stats-grid mx-auto">
-          <div className="stat-card">
-            <h2 className="stat-number">
-              {counts.live.toString().padStart(2, '0')}
-            </h2>
-            <p className="stat-label">Live Work</p>
-          </div>
-          <div className="stat-card">
-            <h2 className="stat-number">
-              {counts.practice.toString().padStart(2, '0')}
-            </h2>
-            <p className="stat-label">Practice Builds</p>
+        <div className="projects-intro__aside" aria-label="Project summary">
+          <p>From concept to launch</p>
+          <div className="projects-intro__stats">
+            <span><strong>{String(PROJECTS.length).padStart(2, '0')}</strong> projects</span>
+            <span><strong>04</strong> disciplines</span>
           </div>
         </div>
       </div>
 
       <div className="projects-toolbar">
-        <div className="projects-tabs" role="tablist" aria-label="Project categories">
-          {tabs.map((c) => (
-            <button
-              key={c.id}
-              type="button"
-              role="tab"
-              aria-selected={activeCategory === c.id}
-              className="projects-tab"
-              data-active={activeCategory === c.id}
-              onClick={() => setActiveCategory(c.id)}
-            >
-              {c.label}
-              <span className="projects-tab__count">
-                {c.id === 'all'
-                  ? PROJECTS.length
-                  : PROJECTS.filter((p) => p.category === c.id).length}
-              </span>
-            </button>
-          ))}
+        <div className="projects-tabs" role="tablist" aria-label="Filter projects">
+          {tabs.map((category) => {
+            const count = category.id === 'all' ? PROJECTS.length : PROJECTS.filter((project) => project.category === category.id).length;
+            return (
+              <button
+                key={category.id}
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === category.id}
+                className="projects-tab"
+                data-active={activeCategory === category.id}
+                onClick={() => setActiveCategory(category.id)}
+              >
+                {category.label}<sup>{count}</sup>
+              </button>
+            );
+          })}
         </div>
 
-        <a
-          href="https://github.com/Vis-halG?tab=stars"
-          className="projects-viewall"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View all on GitHub
+        <a href="https://github.com/Vis-halG?tab=repositories" className="projects-viewall" target="_blank" rel="noopener noreferrer">
+          GitHub archive <ArrowRight aria-hidden="true" />
         </a>
       </div>
 
-      <div className="projects-grid">
-        {visible.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+      <div className="projects-grid" role="tabpanel" aria-live="polite" key={activeCategory}>
+        {visible.map((project, index) => (
+          <ProjectCard key={project.title} project={project} index={PROJECTS.indexOf(project)} featured={index === 0} />
         ))}
+      </div>
+
+      <div className="projects-capabilities" aria-label="Core capabilities">
+        <span>Product thinking</span><i aria-hidden="true" />
+        <span>Responsive design</span><i aria-hidden="true" />
+        <span>Creative development</span><i aria-hidden="true" />
+        <span>Motion &amp; interaction</span>
       </div>
     </section>
   );

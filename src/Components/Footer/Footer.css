@@ -45,6 +45,13 @@
   transition: color 0.2s;
 }
 
+.footer-social svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 1.8;
+}
+
 .footer-social a:hover {
   color: #f05743;
 }

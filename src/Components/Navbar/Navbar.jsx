@@ -4,7 +4,7 @@ import PortfolioImg from "../../assets/images/Portfolio.webp";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home"); // 🔹 NEW
+  const [activeSection, setActiveSection] = useState("home");
   const [isDarkTheme, setIsDarkTheme] = useState(
     localStorage.getItem("theme") === "dark"
   );
@@ -30,7 +30,7 @@ const Navbar = () => {
     setIsDarkTheme((prev) => !prev);
   };
 
-  // 🔹 Function to update active link
+  // Function to update the active link.
   const handleSetActive = (section) => {
     setActiveSection(section);
     closeMobileMenu();

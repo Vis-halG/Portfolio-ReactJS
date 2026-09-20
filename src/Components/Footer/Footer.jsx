@@ -1,4 +1,4 @@
-import React from 'react';
+import { Mail, MessageCircle, Phone } from 'lucide-react';
 import Icon from '../Icons/Icon.jsx';
 import './Footer.css';
 
@@ -17,20 +17,20 @@ const Footer = () => {
 
         <div className="footer-social">
           
-          <a href="https://github.com/Vis-halG">
-           <Icon name="github" label="GitHub" />
+          <a href="https://github.com/Vis-halG" aria-label="GitHub">
+           <Icon name="github" />
           </a>
           <a href="https://www.linkedin.com/in/vishalsgupta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <Icon name="linkedin" label="LinkedIn" />
+            <Icon name="linkedin" />
           </a>
           <a href="mailto:vishalsgupta@example.com" aria-label="Email">
-            <Icon name="envelope" label="Email" />
+            <Mail aria-hidden="true" />
           </a>
           <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <Icon name="whatsapp" label="WhatsApp" />
+            <MessageCircle aria-hidden="true" />
           </a>
           <a href="tel:+1234567890" aria-label="Phone">
-            <Icon name="phone" label="Phone" />
+            <Phone aria-hidden="true" />
           </a>
         </div>
         </div>

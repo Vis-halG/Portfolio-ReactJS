@@ -93,7 +93,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* 🔹 Active link underline */
+/* Active link underline */
 .nav-item.active a::after {
   width: 100%;
   background: linear-gradient(90deg, #ff6f61, #8e2de2);

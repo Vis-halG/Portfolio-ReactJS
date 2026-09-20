@@ -1,104 +1,143 @@
-import React from "react";
-import "./Experience.css";
+import { ArrowUpRight } from 'lucide-react';
+import './Experience.css';
+
+const EXPERIENCES = [
+  {
+    company: 'Thinkinno Technologies',
+    companyFull: 'Thinkinno Technologies Pvt. Ltd.',
+    type: 'Work experience',
+    role: 'UI/UX Designer & Frontend Developer Intern',
+    period: 'Feb 2025 — Present',
+    logo: '/assets/experience/thinkinno.png',
+    logoWidth: 475,
+    logoHeight: 122,
+    current: true,
+    highlights: [
+      'Migrated the company website from WordPress to Next.js and Tailwind CSS, improving performance, SEO, and scalability.',
+      'Migrated LeadVictor from its legacy technology to React.js.',
+      'Designed the complete TrakPay mobile payment experience in Figma, including onboarding, dashboard, transactions, and wallet screens.',
+      'Created dashboard interfaces and improved user flows to strengthen usability and visual consistency across the product.',
+      'Improved UI/UX across web applications with a focus on clean design and usability.',
+    ],
+    links: [
+      { label: 'Live website', href: 'https://thinkinno.com/' },
+      { label: 'WordPress version', href: 'https://thinkinno.com/wordpress' },
+    ],
+  },
+  {
+    company: 'Magic Bus Foundation',
+    companyFull: 'Magic Bus Foundation',
+    type: 'Professional training',
+    role: 'Front-end Development',
+    period: 'Web Designing & UI/UX',
+    logo: 'https://res.cloudinary.com/dbithmxnp/image/upload/f_auto,q_auto,w_240/v1738544860/magic-bus-logo_tscczx.gif',
+    logoWidth: 120,
+    logoHeight: 120,
+    highlights: [
+      'Completed intensive offline training in HTML, CSS, JavaScript, AngularJS, ReactJS, and Adobe Photoshop.',
+      'Built responsive, accessible interfaces using modern web-design tools and practical development workflows.',
+      'Collaborated on React interfaces, tested browser compatibility, and applied current front-end best practices.',
+    ],
+    links: [
+      {
+        label: 'View certificate',
+        href: 'https://drive.google.com/file/d/1dAvfP98wkETZHUj7SD3ZkKmFvz5QJrQo/view',
+      },
+    ],
+  },
+  {
+    company: 'freeCodeCamp',
+    companyFull: 'freeCodeCamp',
+    type: 'Certifications',
+    role: 'Responsive Web Design & Programming',
+    period: 'Self-paced curriculum',
+    logo: 'https://design-style-guide.freecodecamp.org/img/fcc_secondary_small.svg',
+    logoWidth: 120,
+    logoHeight: 120,
+    highlights: [
+      'Completed more than 300 hours of coursework and project-based learning.',
+      'Strengthened practical skills in responsive design, CSS Grid, Flexbox, JavaScript, and Python.',
+      'Built certification projects focused on clean, accessible, and user-friendly interfaces.',
+    ],
+    links: [
+      {
+        label: 'Responsive Web Design',
+        href: 'https://www.freecodecamp.org/certification/vishal-g/responsive-web-design',
+      },
+      {
+        label: 'JavaScript',
+        href: 'https://www.freecodecamp.org/certification/vishal-g/javascript-v9',
+      },
+      {
+        label: 'Python',
+        href: 'https://www.freecodecamp.org/certification/vishal-g/python-v9',
+      },
+    ],
+  },
+];
 
 function Experience() {
   return (
-    <div className="experience" id="experience_section">
-      <h2 className="head-title">Experience</h2>
+    <section className="experience" id="experience_section" aria-labelledby="experience-title">
+      <header className="experience-header">
+        <div>
+          <p className="experience-eyebrow">Career &amp; learning</p>
+          <h2 id="experience-title">Experience</h2>
+        </div>
+        <p className="experience-intro">
+          Building real products, sharpening the craft, and continuously learning.
+        </p>
+      </header>
 
-      {/* First Experience Card */}
-      <div className="experience-container">
-        <div className="heading">
-          <img
-            src="https://res.cloudinary.com/dbithmxnp/image/upload/f_auto,q_auto,w_240/v1738544860/magic-bus-logo_tscczx.gif"
-            alt="Magic Bus Foundation"
-            className="experience-image"
-            width="120"
-            height="120"
-            loading="lazy"
-            decoding="async"
-          />
-          <h2>Magic Bus Foundation</h2>
-        </div>
-        <div className="experience-content">
-          <p className="training">
-            <strong>
-              Front-end Development &nbsp;{" "}
-              <a
-                href="https://drive.google.com/file/d/1dAvfP98wkETZHUj7SD3ZkKmFvz5QJrQo/view"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="certificate-link"
-              >
-               <span>
-                View Certificate🔗
-              </span>
-               
-              </a>
-            </strong>
-          </p>
-          <p>
-            Completed an intensive offline training program in Web Designing & UX/UI,
-            gaining expertise in modern web development skills and industry-relevant tools.
-            The curriculum included hands-on experience with: HTML, CSS, JavaScript,
-            AngularJS, ReactJS, and Adobe Photoshop.
-          </p>
-          <p>
-            Additional Tools: Advanced web designing tools and technologies essential
-            for crafting responsive and user-friendly websites.
-          </p>
-          <p>
-            Worked with a team to create user interfaces with React, using HTML, CSS,
-            and JavaScript. Tested features for browser compatibility, staying current
-            with front-end trends to enhance skills and deliver optimized solutions.
-          </p>
-        </div>
-      </div>
+      <div className="experience-timeline">
+        {EXPERIENCES.map((item, index) => (
+          <article className={`experience-card${item.current ? ' experience-card--current' : ''}`} key={item.company}>
+            <span className="experience-marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
 
-      {/* Second Experience Card (FreeCodeCamp) */}
-      <div className="experience-container">
-        <div className="heading">
-          <img
-            src="https://design-style-guide.freecodecamp.org/img/fcc_secondary_small.svg"
-            alt="FreeCodeCamp"
-            className="experience-image"
-            width="120"
-            height="120"
-            loading="lazy"
-            decoding="async"
-          />
-          <h2>Free Code Camp</h2>
-        </div>
-        <div className="experience-content experience-content-two">
-          <p className="training">
-            <strong>
-              Responsive Web Design &nbsp;{" "}
-              <a
-                href="https://www.freecodecamp.org/certification/vishal-g/responsive-web-design"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="certificate-link"
-              ><span>
-                 View Certificate🔗
-              </span>
-               
-              </a>
-            </strong>
-          </p>
-          <p>
-            I completed the Responsive Web Design Certification from freeCodeCamp.
-            This certification required me to complete more than 300 hours of coursework
-            and projects, strengthening my expertise in HTML5, CSS3, Flexbox, CSS Grid,
-            and mobile-first responsive design.
-          </p>
-          <p>
-            The projects I built — including a Technical Documentation Page, Tribute Page,
-            and Product Landing Page — helped me gain practical experience in designing
-            clean, accessible, and user-friendly interfaces.
-          </p>
-        </div>
+            <div className="experience-company">
+              <div className="experience-logo-wrap">
+                <img
+                  src={item.logo}
+                  alt={`${item.company} logo`}
+                  className="experience-logo"
+                  width={item.logoWidth}
+                  height={item.logoHeight}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <p className="experience-type">{item.type}</p>
+                <h3>{item.company}</h3>
+                <p className="experience-company-name">{item.companyFull}</p>
+              </div>
+            </div>
+
+            <div className="experience-details">
+              <div className="experience-role-row">
+                <div>
+                  <p className="experience-period">{item.period}</p>
+                  <h4>{item.role}</h4>
+                </div>
+                {item.current && <span className="experience-current"><i /> Current</span>}
+              </div>
+
+              <ul className="experience-highlights">
+                {item.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+              </ul>
+
+              <div className="experience-links" aria-label={`${item.company} links`}>
+                {item.links.map((link) => (
+                  <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
+                    {link.label}<ArrowUpRight aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
 
